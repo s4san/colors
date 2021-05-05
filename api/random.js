@@ -26,6 +26,8 @@ function getNRandoms(num, generator) {
 
 module.exports = (req, res) => {
   try {
+      res.setHeader('Access-Control-Allow-Origin', '*')
+      res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
       let num = Number.parseInt(req.query.count, 10);
       if (!Number.isNaN(num) && Number.isFinite(num) && num < 50 && num > 1) {
         let outerIndices = getNRandoms(num, getRandomWithin.bind(null, 100));
