@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Random Colors</title>
+        <style>
+            #colors {
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+            }
+
+            #colors > * {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 10em;
+                height: 3em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Random Colors</h1>
+        <p>
+            Get the api at: <a href='https://random-flat-colors.vercel.app/api/random?count=5'>'https://random-flat-colors.vercel.app/api/random?count=5'</a>
+            You can generate upto 50 random colors by tweaking the count parameter
+        </p>
+        <p>Here are few colors for your perusal</p>
+        <div id='colors'>
+
+        </div>
+        <script>
+            {
+                async function getColors() {
+                    const response = await fetch('https://random-flat-colors.vercel.app/api/random?count=5');
+                    const colors = await response.json();
+
+                    const container = document.getElementById('colors');
+                    for (let i = 0; i < colors.length; ++i) {
+                        const el = document.createElement('div');
+                        el.style.backgroundColor = colors[i];
+                        el.textContent = colors[i];
+                        container.appendChild(el);
+                    }
+                }
+
+                getColors();
+            }
+        </script>
+    </body>
+</html>
