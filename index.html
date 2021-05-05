@@ -4,6 +4,20 @@
         <meta charset="utf-8">
         <title>Random Colors</title>
         <style>
+            :root {
+                font-family: system-ui, sans-serif;
+            }
+
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                width: 100vw;
+                height: 100vh;
+                margin: 1em;
+            }
+
             #colors {
                 display: flex;
                 flex-direction: column;
@@ -22,7 +36,8 @@
     <body>
         <h1>Random Colors</h1>
         <p>
-            Get the api at: <a href='https://random-flat-colors.vercel.app/api/random?count=5'>'https://random-flat-colors.vercel.app/api/random?count=5'</a>
+            Get the api at: <a href='https://random-flat-colors.vercel.app/api/random?count=5'>https://random-flat-colors.vercel.app/api/random?count=5</a>
+            <br>
             You can generate upto 50 random colors by tweaking the count parameter
         </p>
         <p>Here are few colors for your perusal</p>
@@ -33,10 +48,10 @@
             {
                 async function getColors() {
                     const response = await fetch('https://random-flat-colors.vercel.app/api/random?count=5');
-                    const colors = await response.json();
+                    const result = await response.json();
 
                     const container = document.getElementById('colors');
-                    for (let i = 0; i < colors.length; ++i) {
+                    for (let i = 0; i < result.colors.length; ++i) {
                         const el = document.createElement('div');
                         el.style.backgroundColor = colors[i];
                         el.textContent = colors[i];
