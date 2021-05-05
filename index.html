@@ -18,18 +18,19 @@
                 margin: 1em;
             }
 
-            #colors {
+            #colors-container {
                 display: flex;
                 flex-direction: column;
                 gap: 1em;
             }
 
-            #colors > * {
+            #colors-container > * {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 width: 10em;
                 height: 3em;
+                border-radius: 0.25em;
             }
         </style>
     </head>
@@ -37,11 +38,12 @@
         <h1>Random Colors</h1>
         <p>
             Get the api at: <a href='https://random-flat-colors.vercel.app/api/random?count=5'>https://random-flat-colors.vercel.app/api/random?count=5</a>
-            <br>
+        </p>
+        <p>
             You can generate upto 50 random colors by tweaking the count parameter
         </p>
         <p>Here are few colors for your perusal</p>
-        <div id='colors'>
+        <div id='colors-container'>
 
         </div>
         <script>
@@ -50,11 +52,11 @@
                     const response = await fetch('https://random-flat-colors.vercel.app/api/random?count=5');
                     const result = await response.json();
 
-                    const container = document.getElementById('colors');
+                    const container = document.getElementById('colors-container');
                     for (let i = 0; i < result.colors.length; ++i) {
                         const el = document.createElement('div');
-                        el.style.backgroundColor = colors[i];
-                        el.textContent = colors[i];
+                        el.style.backgroundColor = result.colors[i];
+                        el.textContent = result.colors[i];
                         container.appendChild(el);
                     }
                 }
